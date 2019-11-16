@@ -1,62 +1,34 @@
-import { GoogleComponent } from 'react-google-location' 
+import React from "react";
+import "./App.css";
+import { BrowserRouter as Router, Route } from "react-router-dom";
+import InfoPage from "./InfoPage.js";
+import SoftwareEng from "./SoftwareEng.js";
+import InfoSessions from './Form'
 
-import React from 'react'
-import { withGoogleMap, GoogleMap, withScriptjs, InfoWindow, Marker } from "react-google-maps";
-import Geocode from "react-geocode";
-
-
-import Autocomplete from 'react-google-autocomplete';
-
-const API_KEY =  'AIzaSyCSk5gi7uFpihE_5vsGLV_kFPgxgwJZ_Fk'
-
-Geocode.setApiKey("AIzaSyDGe5vjL8wBmilLzoJ0jNIwe9SAuH2xS_0");
-Geocode.enableDebug();
-
-class Map extends React.PureComponent {
-  /**
-   * When the user types an address in the search box
-   * @param place
-   */
-  onPlaceSelected = (place) => {
-    const address = place.formatted_address,
-      addressArray = place.address_components,
-      city = this.getCity(addressArray),
-      area = this.getArea(addressArray),
-      state = this.getState(addressArray),
-      latValue = place.geometry.location.lat(),
-      lngValue = place.geometry.location.lng();
-    // Set these values in the state.
-    this.setState({
-      address: (address) ? address : '',
-      area: (area) ? area : '',
-      city: (city) ? city : '',
-      state: (state) ? state : '',
-      markerPosition: {
-        lat: latValue,
-        lng: lngValue
-      },
-      mapPosition: {
-        lat: latValue,
-        lng: lngValue
-      },
-    })
-  };
-
-
-  render() {
-    return (
-      <div>
-      <Autocomplete
-        style={{ width: '90%' }}
-        onPlaceSelected={(place) => {
-          console.log(place);
-        }}
-        types={['(regions)']}
-        componentRestrictions={{ country: "ru" }}
-      />
-      </div>
-    )
-  }
+function App() {
+  return (
+    <div className="App">
+      <header>
+        <img
+          src="data:image/png;base64,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"
+          alt=""
+        />
+      </header>
+      <Router>
+        <Route
+          exact
+          path="/"
+          render={routerProps => <InfoPage {...routerProps} />}
+        />
+        <Route path="/softwareeng">
+          <SoftwareEng />
+        </Route>
+        <Route path="/info-sessions">
+          <InfoSessions />
+        </Route>
+      </Router>
+    </div>
+  );
 }
 
-export default Map    
+export default App;
