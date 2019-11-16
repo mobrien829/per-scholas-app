@@ -1,37 +1,201 @@
 import React from "react";
-import logo from "./logo.svg";
-import "./App.css";
-import { BrowserRouter as Router, Route } from "react-router-dom";
-import InfoPage from "./InfoPage.js";
-import SoftwareEng from "./SoftwareEng.js";
+import { Dropdown } from "semantic-ui-react";
+import { Input } from "semantic-ui-react";
+import { Grid, Segment, Container } from "semantic-ui-react";
 
-function App() {
-  return (
-    <div className="App">
-      <Router>
-        <header className="App-header">
-          <img src={logo} className="App-logo" alt="logo" />
-          <p>
-            Edit <code>src/App.js</code> and save to reload.
-          </p>
-          <a
-            className="App-link"
-            href="https://reactjs.org"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Learn React
-          </a>
-        </header>
-        <Route exact path="/">
-          <InfoPage />
-        </Route>
-        <Route path="/softwareeng">
-          <SoftwareEng />
-        </Route>
-      </Router>
-    </div>
-  );
+class Form extends React.PureComponent {
+  constructor(props) {
+    super(props);
+    this.state = {};
+  }
+
+  getAllHours() {
+    let hours = [...Array(12).keys()].map(hour => {
+      return {
+        text: `${hour + 1}am`,
+        value: `${hour + 1}am`,
+        key: `${hour + 1}am`
+      };
+    });
+
+    hours = hours.concat(
+      [...Array(12).keys()].map(hour => {
+        return {
+          text: `${hour + 1}pm`,
+          value: `${hour + 1}pm`,
+          key: `${hour + 1}pm`
+        };
+      })
+    );
+    console.log(hours);
+    return hours;
+  }
+
+  render() {
+    return (
+      // <div>
+      // <Input placeholder='Date'
+      // type="date"
+      // min="2019-11-01"
+      // max="2050-01-01"
+      // />
+      // <Dropdown
+      //   placeholder="Start"
+      //   search
+      //   selection
+      //   options={this.getAllHours()}
+      // />
+      // <Dropdown
+      //   placeholder="End"
+      //   search
+      //   selection
+      //   options={this.getAllHours()}
+      // />
+      // </div>
+      <Grid centered columns={7}>
+        <Grid.Column mobile={16} tablet={8} computer={2}>
+          Sunday
+          <Input placeholder='Date'
+        type="date"
+        min="2019-11-01"
+        max="2050-01-01"
+        />
+        <Dropdown
+          placeholder="Start"
+          search
+          selection
+          options={this.getAllHours()}
+        />
+        <Dropdown
+          placeholder="End"
+          search
+          selection
+          options={this.getAllHours()}
+        />
+        </Grid.Column>
+        <Grid.Column mobile={16} tablet={8} computer={2}>
+          Monday
+          <Input placeholder='Date'
+        type="date"
+        min="2019-11-01"
+        max="2050-01-01"
+        />
+        <Dropdown
+          placeholder="Start"
+          search
+          selection
+          options={this.getAllHours()}
+        />
+        <Dropdown
+          placeholder="End"
+          search
+          selection
+          options={this.getAllHours()}
+        />
+        </Grid.Column>
+        <Grid.Column mobile={16} tablet={8} computer={2}>
+          Tuesday
+          <Input placeholder='Date'
+        type="date"
+        min="2019-11-01"
+        max="2050-01-01"
+        />
+        <Dropdown
+          placeholder="Start"
+          search
+          selection
+          options={this.getAllHours()}
+        />
+        <Dropdown
+          placeholder="End"
+          search
+          selection
+          options={this.getAllHours()}
+        />
+        </Grid.Column>
+        <Grid.Column mobile={16} tablet={8} computer={2}>
+          Wednesday
+          <Input placeholder='Date'
+        type="date"
+        min="2019-11-01"
+        max="2050-01-01"
+        />
+        <Dropdown
+          placeholder="Start"
+          search
+          selection
+          options={this.getAllHours()}
+        />
+        <Dropdown
+          placeholder="End"
+          search
+          selection
+          options={this.getAllHours()}
+        />
+        </Grid.Column>
+        <Grid.Column mobile={16} tablet={8} computer={2}>
+          Thursday
+          <Input placeholder='Date'
+        type="date"
+        min="2019-11-01"
+        max="2050-01-01"
+        />
+        <Dropdown
+          placeholder="Start"
+          search
+          selection
+          options={this.getAllHours()}
+        />
+        <Dropdown
+          placeholder="End"
+          search
+          selection
+          options={this.getAllHours()}
+        />
+        </Grid.Column>
+        <Grid.Column mobile={16} tablet={8} computer={2}>
+          Friday
+          <Input placeholder='Date'
+        type="date"
+        min="2019-11-01"
+        max="2050-01-01"
+        />
+        <Dropdown
+          placeholder="Start"
+          search
+          selection
+          options={this.getAllHours()}
+        />
+        <Dropdown
+          placeholder="End"
+          search
+          selection
+          options={this.getAllHours()}
+        />
+        </Grid.Column>
+        <Grid.Column mobile={16} tablet={8} computer={2}>
+          Saturday
+          <Input placeholder='Date'
+        type="date"
+        min="2019-11-01"
+        max="2050-01-01"
+        />
+        <Dropdown
+          placeholder="Start"
+          search
+          selection
+          options={this.getAllHours()}
+        />
+        <Dropdown
+          placeholder="End"
+          search
+          selection
+          options={this.getAllHours()}
+        />
+        </Grid.Column>
+      </Grid>
+    );
+  }
 }
 
-export default App;
+export default Form;
