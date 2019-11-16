@@ -1,7 +1,19 @@
-import React from "react";
+import React, { Component } from "react";
 
-const InfoPage = () => {
-  return <div>{console.log("rendered InfoPage")}</div>;
-};
+class InfoPage extends Component {
+  handleClick = () => {
+    this.props.history.push("/softwareeng");
+    console.log("page change");
+  };
+
+  render() {
+    return (
+      <div>
+        {console.log("rendered InfoPage")}
+        <button onClick={() => this.handleClick()}>Click Me</button>
+      </div>
+    );
+  }
+}
 
 export default InfoPage;

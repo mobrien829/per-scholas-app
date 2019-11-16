@@ -23,9 +23,11 @@ function App() {
             Learn React
           </a>
         </header>
-        <Route exact path="/">
-          <InfoPage />
-        </Route>
+        <Route
+          exact
+          path="/"
+          render={routerProps => <InfoPage {...routerProps} />}
+        />
         <Route path="/softwareeng">
           <SoftwareEng />
         </Route>
